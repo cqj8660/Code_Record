@@ -11,6 +11,23 @@ int main()
     cin >> n;
     for(int i = 0; i < n; i++)
         cin >> s[i];
-    
+    for(int i = n - 2; i >= 0; i--)
+    {
+        int l = 1, r = s[i].length() + 1;
+        string q;
+        for(int j = 0; j < 100; j++)
+        {
+            int mid = (l + r) / 2;
+            q = s[i].substr(0, mid);
+            if(q <= s[i + 1])
+                l = mid;
+            else
+                r = mid;
+        }
+        //cout << q << endl;
+        s[i] = q;
+    }
+    for(int i = 0; i < n; i++)
+        cout << s[i] << endl;
     return 0;
 }

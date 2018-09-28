@@ -47,6 +47,7 @@ int main()
             cout << t << ' ';
             res -= t;
             while(t--)
+                
                 cout << path[j++] << ' ';
             cout << endl;
         }

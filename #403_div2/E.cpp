@@ -16,7 +16,6 @@ void dfs(int node)
         dfs(idx);
         path.push_back(node);
     }
-    
 }
 int main()
 {
@@ -47,7 +46,6 @@ int main()
             cout << t << ' ';
             res -= t;
             while(t--)
-                
                 cout << path[j++] << ' ';
             cout << endl;
         }
@@ -59,6 +57,5 @@ int main()
             cout << endl;
         }
     }
-    cout << endl;
     return 0;
 }

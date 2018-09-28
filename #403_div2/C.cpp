@@ -6,7 +6,8 @@ const int maxn = 2e5 + 10;
 vector<int> q[maxn];
 int color[maxn];
 int n;
-bool vis[maxn];void dfs(int node, int fat, int c1, int c2)
+bool vis[maxn];
+void dfs(int node, int fat, int c1, int c2)
 {
     int index = 1;
     for(int i = 0; i < q[node].size(); i++)

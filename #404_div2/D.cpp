@@ -1,69 +1,63 @@
 #include <bits/stdc++.h>
+#define ll long long
 #define vi vector<int>
 #define eps 1e-6
 using namespace std;
-const int maxn = 2e3 + 10;
-map<string, int> T;
-pair<string, string> a[maxn];
+const int maxn = 2e5 + 10;
+const int MOD = 1e9 + 7;
+int l[maxn], r[maxn];
+ll fac[maxn];
+ll quickmod(ll a, ll b)
+{
+    ll res = 1;
+    while(b)
+    {
+        if(b & 1)
+            res *= a;
+        a = a * a % MOD;
+        b >>= 1;
+        res %= MOD;
+    }
+    return res;
+}
+ll C(ll a, ll b)
+{
+    if(b > a || b < 0) return 0;
+    ll s1 = fac[a], s2 = fac[a - b] * fac[b] % MOD;
+    return s1 * quickmod(s2, MOD - 2) % MOD;
+
+}
+
 int main()
 {
     ios::sync_with_stdio(false);
     cin.tie(0);
-    int n;
-    cin >> n;
-    for(int i = 0; i < n; i++)
+    string s;
+    cin >> s;
+    int len = s.length();
+    for(int i = 1; i < len; i++)
     {
-        string s, t;
-        cin >> s >> t;
-        a[i] = make_pair(s.substr(0, 3), s.substr(0, 2) + t[0]);
+        if(s[i - 1] == '(')
+            l[i]++;
+        l[i] += l[i - 1];
     }
-    vector<string> ans;
-    vector<int> seq;
-    bool f = 1;
-    for(int i = 0; i < n; i++)
+    for(int i = len - 2; i >= 0; i--)
     {
-        if(T[a[i].second] != 1)
-        {
-            bool res = 1;
-            for(int j = 0; j < i; j++)
-            {
-                if(seq[j] == 1 && ans[j] == a[i].first)
-                {
-                    res = 0;
-                    break;
-                }
-            }
-            if(res == 0)
-            {
-                f = 0;
-                break;
-            }
-            ans.push_back(a[i].second);
-            T[a[i].second] = 1;
-            if(T[a[i].first] != 1)
-                T[a[i].first] = 2;
-            seq.push_back(2);
-        }
-        else
-        {
-            if(T[a[i].first])
-            {
-                f = 0;
-                break;
-            }
-            ans.push_back(a[i].first);
-            T[a[i].first] = 1;
-            seq.push_back(1);
-        }
-        
+        if(s[i + 1] == ')')
+            r[i]++;
+        r[i] += r[i + 1];
     }
-    if(f)
+    fac[0] = 1;
+    fac[1] = 1;
+    for(int i = 2; i <= len; i++)
+        fac[i] = fac[i - 1] * i % MOD;
+    ll ans = 0;
+    for(int i = 0; i < len; i++)
     {
-        cout << "YES" << endl;
-        for(auto idx: ans)
-            cout << idx << endl;
+        if(s[i] == ')') continue;
+        ans += C(l[i] + r[i], r[i] - 1);
+        ans %= MOD;
     }
-    else
-        cout << "NO" << endl;
+    cout << ans << endl;
     return 0;
 }

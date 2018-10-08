@@ -27,7 +27,6 @@ ll C(ll a, ll b)
     return s1 * quickmod(s2, MOD - 2) % MOD;
 
 }
-
 int main()
 {
     ios::sync_with_stdio(false);

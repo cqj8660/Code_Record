@@ -2,7 +2,6 @@
 using namespace std;
 #define ll long long
 map<ll, int> g;
-set<ll> ans;
 int main()
 {
     ios::sync_with_stdio(false);

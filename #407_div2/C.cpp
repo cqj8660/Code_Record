@@ -3,8 +3,7 @@
 const int maxn = 1e5 + 10;
 using namespace std;
 int n;
-ll dp[maxn], a[maxn];
-ll pl[maxn], mi[maxn];
+ll a[maxn], pl[maxn], mi[maxn];
 ll cal(ll *p, int len)
 {
     ll res = INT_MIN, temp = 0;

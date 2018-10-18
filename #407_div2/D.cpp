@@ -2,7 +2,7 @@
 #define ll long long
 const int maxn = 1e6 + 10;
 using namespace std;
-ll n, m, self_loop;
+ll n, m, self_loop, ans;
 vector<int> g[maxn];
 bool vis[maxn];
 int deg[maxn];
@@ -11,12 +11,10 @@ void dfs(int nod)
     vis[nod] = 1;
     for(auto idx: g[nod])
     {
-        if(vis[idx])
-            continue;
+        if(!vis[idx])
         dfs(idx);
     }
 }
-ll ans = 0;
 int main()
 {
     ios::sync_with_stdio(false);
@@ -41,7 +39,7 @@ int main()
             break;
         }
     for(int i = 1; i <= n; i++)
-        if(vis[i] == 0 && deg[i])//如果图不联通
+        if(vis[i] == 0 && deg[i])//如果有边没有被走到
         {
             cout << 0 << endl;
             return 0;

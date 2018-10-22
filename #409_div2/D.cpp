@@ -31,9 +31,7 @@ int main()
         cin >> a[i].x >> a[i].y;
     double ans = 1e12;
     for(int i = 0; i < n; i++)
-    {
         ans = min(pointoline(a[(i - 1 + n) % n], a[i], a[(i + 1) % n]) / 2, ans);
-    }
     cout << fixed << setprecision(10) << ans << endl;
     return 0;
     

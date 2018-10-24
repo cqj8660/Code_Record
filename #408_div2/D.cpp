@@ -12,7 +12,7 @@ int main()
     cin.tie(0);
     int n, k, d, i;
     cin >> n >> k >> d;
-    for(int j = 1; j < k; j++)
+    for(int j = 0; j < k; j++)
     {
         cin >> i;
         T.push(pii(i, 0));

@@ -14,6 +14,5 @@ int main()
         cin >> a[i];
         q[a[i]] = 1;
     }
-    
     return 0;
 }

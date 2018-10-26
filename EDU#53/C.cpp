@@ -12,8 +12,8 @@ bool check(int mid)
     for(int i = 1; i <= n - mid + 1; i++)
     {
         int l = i, r = i + mid - 1;
-        int nedx = x - q[i - 1].fi - (q[n].fi - q[r].fi);
-        int nedy = y - q[i - 1].se - (q[n].se - q[r].se);
+        int nedx = x - q[l - 1].fi - (q[n].fi - q[r].fi);
+        int nedy = y - q[l - 1].se - (q[n].se - q[r].se);
         if(mid >= abs(nedx) + abs(nedy) && ((abs(nedx) + abs(nedy)) % 2 == mid % 2))
             return true;
     }
@@ -49,7 +49,7 @@ int main()
         cout << 0 << endl;
         return 0;
     }
-    int l = 0, r = n;
+    int l = 0, r = n + 1;
     int ans = -1;
     for(int i = 0; i < 100; i++)
     {

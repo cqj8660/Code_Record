@@ -27,7 +27,7 @@ int main()
 {
     ios::sync_with_stdio(false);
     cin.tie(0);
-    freopen("in.txt", "r", stdin);
+   // freopen("in.txt", "r", stdin);
     ll n, k, q;
     cin >> n >> k >> q;
     C = n * n - k;
@@ -47,14 +47,12 @@ int main()
     ll ans = 0;
     for(int i = 1; i <= n; i++)
     {
-        ans += (r[i] * r[i]) % MOD;
-        ans mo;
-        ans += (b[i] * b[i]) % MOD;
+        ans += (r[i] * r[i] % MOD + b[i] * b[i] % MOD);
         ans mo;
     }
     ans mo;
-    ans = mul(ans, n - 2);
-    ans += mul(2 * C, C) + C;
+    ans = ans * (n - 2);
+    ans += 2 * C * C + C;
     ans mo;
     cout << ans << endl;
     while(q--)
@@ -64,25 +62,20 @@ int main()
         if(Q[mp(u, v)] == 0)
         {
             Q[mp(u, v)] = 1;
-            ans = (ans + 1 + MOD)- mul(4, C);
-            ans mo;
+            ans = ans + 1 + MOD - 4 * C % MOD;
             C--;
-            C mo;
-            ans = (ans + MOD) - (n - 2) * (2 * r[u] - 1) % MOD;
-            ans mo;
+            ans = ans + MOD - (n - 2) * (2 * r[u] - 1) % MOD;
             r[u]--;
-            ans = (ans + MOD) - (n - 2) * (2 * b[v] - 1) % MOD;
-            ans mo;
+            ans = ans + MOD - (n - 2) * (2 * b[v] - 1) % MOD;
             b[v]--;
+            ans mo;
             cout << ans << endl;
         }
         else
         {
             Q[mp(u, v)] = 0;
-            ans = ans + 3 + mul(4, C);
-            ans mo;
+            ans = ans + 1 + 4 * C + 2;
             C++;
-            C mo;
             ans = ans + (n - 2) * (2 * r[u] + 1) % MOD;
             ans mo;
             r[u]++;

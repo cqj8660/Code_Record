@@ -11,9 +11,6 @@ int main()
     string s;
     cin >> s;
     sort(s.begin(), s.end());
-    for(int i = n - 1; i >= 0; i--)
-        cout << s[i];
-    cout << endl;
+    cout << s << endl;
     return 0;
-
 }

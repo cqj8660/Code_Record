@@ -1,11 +1,11 @@
 #include <bits/stdc++.h>
 #define ll long long
 const int maxn = 2e5 + 10;
-ll a[maxn];
+int a[maxn];
 using namespace std;
-map<ll, int> q;
-ll ans;
-vector<ll> p;
+map<int, int> q;
+int ans;
+vector<int> p;
 int main()
 {
     ios::sync_with_stdio(false);
@@ -23,7 +23,7 @@ int main()
     int len = (int)p.size();
     for(int i = 0; i < len; i++)
     {
-        ll temp = 0;
+        int temp = 0;
         for(int j = 1; j <= p[i]; j++)
         {
             int k = i + 1, power = j;

@@ -11,7 +11,7 @@ int main()
     cin.tie(0);
     int n, m;
     cin >> n >> m;
-
+    
     cout << endl;
     return 0;
 

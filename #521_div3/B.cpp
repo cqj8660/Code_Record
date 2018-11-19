@@ -14,22 +14,10 @@ int main()
     int ans = 0;
     for(int i = 0; i < n; i++)
     {
-        if(a[i] == 1)
+        if(a[i] && !a[i + 1] && a[i + 2])
         {
-            bool f = 0;
-            int cnt = 1;
-            while(a[i + 1] == f)
-            {
-                i++;
-                if(a[i] == 1)
-                    cnt++;
-                f = !f;
-            }
-            if(cnt == 2)
-                ans++;
-            else if(cnt == 1);
-            else
-                ans += cnt - 2;
+            ans++;
+            a[i + 2] = 0;
         }
     }
     cout << ans << endl;

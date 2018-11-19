@@ -8,7 +8,7 @@ vector<int> tree[maxn];
 vector<int> ice[maxn];
 bool vis[maxn];
 int col[maxn];
-void dfs(int node)
+void dfs1(int node)//用map存储 稍慢
 {
     vis[node] = 1;
     int s = 1;
@@ -28,7 +28,32 @@ void dfs(int node)
     for(auto idx: tree[node])
     {
         if(!vis[idx])
-            dfs(idx);
+            dfs1(idx);
+    }
+}
+void dfs2(int node)//去掉那个map的log的复杂度
+{
+    vis[node] = 1;
+    int s = 1, ii = 0;
+    vector<int> q;
+    for(auto idx: ice[node])
+        if(col[idx])
+            q.push_back(col[idx]);
+    q.push_back(INT_MAX);
+    sort(q.begin(), q.end());
+    for(auto idx: ice[node])
+    {
+        while(s == q[ii])
+        {
+            s++;ii++;
+        }
+        if(!col[idx])
+            col[idx] = s++;
+    }
+    for(auto idx: tree[node])
+    {
+        if(!vis[idx])
+            dfs2(idx);
     }
 }
 int main()
@@ -50,7 +75,7 @@ int main()
         tree[a].push_back(b);
         tree[b].push_back(a);
     }
-    dfs(1);
+    dfs2(1);
     for(int i = 1; i <= m; i++)
         if(!col[i])col[i] = 1;
     set<int> t;

@@ -15,7 +15,7 @@ int main()
     for(int i = 1; i <= n; i++)
     {
         dp[i][0] = -1;
-        for( int j = 1; j <= x; j++)
+        for(int j = 1; j <= x; j++)
         {
             dp[i][j] = -1;
             for(int t = 1; t <= min(k, i); t++)

@@ -13,26 +13,18 @@ int main()
     for(int i = 1; i <= n; i++)
         cin >> a[i];
     cout << n + 1 << endl;
-    for(int i = 1; i <= n; i++)
-        a[i] += n;
-    cout << "1 " << n << ' ' << n << endl;
-    ll q = a[n] - 1, mod = a[n] + 1;
-    for(int i = n - 1; i >= 1; i--)
+    ll mod = n + 1;
+    for(int i = n; i >= 1; i--)
     {
-//        cout << q << endl;
-        ll temp = a[i] / mod * mod + q;
-        if(a[i] % mod) temp += mod;
-        q--;
-        cout << "1 " << i << ' ' << temp - a[i] << endl;
+        ll temp = (1 + a[i] / mod) * mod + i;
+        ll add = temp - a[i];
+        cout << "1 " << i << ' ' << add << endl;
         for(int j = 1; j <= i; j++)
         {
-            a[i] += temp - a[i];
-//            a[i] %= mod;
+            a[j] += add;
+            a[j] %= mod;
         }
     }
-    cout << "2 " << n << ' ' << mod << endl;
-    for(int i = 1; i <= n; i++)
-        cout << i << ' ';
-    
+    cout << "2 " << n << ' ' << n + 1 << endl;
     return 0;
 }

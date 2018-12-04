@@ -29,10 +29,13 @@ int main()
         len = max((int)p[i].size(), len);
         sum[i].resize(p[i].size());
     }
+    vector<int> per;
     for(int i = 1; i <= m; i++)
     {
         int le = (int)p[i].size();
         if(le == 0) continue;
+        else
+            per.push_back(i);
         sum[i][0] = p[i][0];
         for(int j = 1; j < le; j++)
             sum[i][j] = sum[i][j - 1] + p[i][j];
@@ -41,7 +44,7 @@ int main()
     for(int i = 0; i < len; i++)
     {
         ll temp = 0;
-        for(int j = 1; j <= m; j++)
+        for(auto j: per)
         {
             if(p[j].size() > i)
                 if(sum[j][i] > 0)

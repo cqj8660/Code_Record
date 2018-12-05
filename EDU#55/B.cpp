@@ -42,18 +42,6 @@ int main()
         ans = max(ans, l[i]);
     for(int i = 0; i < n; i++)
     {
-//        if(i == 0 && s[i] == 'S')
-//        {
-//            if(s[i + 1] == 'G' && l[i + 1] < num)
-//                ans = max(ans, l[i + 1] + 1);
-//            continue;
-//        }
-//        if(i == n - 1 && s[i - 1] == 'S')
-//        {
-//            if(s[i - 1] == 'G' && l[i - 1] < num)
-//                ans = max(ans, l[i - 1] + 1);
-//            continue;
-//        }
         if(s[i] == 'S')
         {
             if(l[i - 1] + l[i + 1] < num)

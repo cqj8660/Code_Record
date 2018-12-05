@@ -1,0 +1,13 @@
+#include <bits/stdc++.h>
+#define ll long long
+#define pii pair<int, int>
+using namespace std;
+pii a[2000];
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    
+    
+    return 0;
+}

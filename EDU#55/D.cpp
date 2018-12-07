@@ -8,15 +8,10 @@ using namespace std;
 pair<int, int> a[maxn];
 vector<int> g[maxn];
 vector<int> toru;
-int len;
+int len, ii;
 bool cmp(pii a, pii b)
 {
     return a.se > b.se;
-}
-int get()
-{
-    static int index = 0;
-    return toru[index++];
 }
 int main()
 {
@@ -66,7 +61,7 @@ int main()
             len++;
         }
         else
-            g[get()].push_back(a[j].fi);
+            g[toru[ii++]].push_back(a[j].fi);
     }
     cout << "YES" << ' ' << len << endl << n - 1 << endl;
     for(int i = 1; i <= n; i++)

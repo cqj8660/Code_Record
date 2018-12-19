@@ -2,7 +2,7 @@
 #define ll long long
 #define pii pair<int, int>
 using namespace std;
-const int maxn = 3e5 + 10;
+const int maxn = 3e3 + 10;
 int a[maxn], b[maxn];
 int n;
 
@@ -28,6 +28,8 @@ int main()
             b[i + 1] -= b[i];
         }
     }
+    if(b[n - 1])
+        f = 0;
     if(f)
         cout << "YES" << endl;
     else

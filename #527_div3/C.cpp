@@ -30,9 +30,7 @@ void test(string s)
             ans[a[i + 1].idx] = 'P';
         }
         else
-        {
             return;
-        }
     }
     for(int i = 0; i < 2 * n - 2; i++)
         cout << ans[i];

@@ -15,9 +15,7 @@ int main()
         cin >> n >> k;
         int len = 0;
         for(int i = 0; len < n; i = (i + 1) % k, len++)
-        {
             putchar('a' + i);
-        }
         putchar('\n');
     }
     return 0;

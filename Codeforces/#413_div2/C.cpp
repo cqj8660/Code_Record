@@ -2,7 +2,6 @@
 #define ll long long
 #define pii pair<int, int>
 using namespace std;
-const int maxn = 2e5 + 10;
 struct node{
     int bea, cost;
 };
@@ -26,16 +25,8 @@ int solve(vector<node>& t, int val)
     int ans = 0;
     for(int i = len - 1; i > 0; i--)
     {
-//        for(int j = i - 1; j >= 0; j--)
-//        {
-//            if(t[j].cost + t[i].cost <= val)
-//            {
-//                ans = max(ans, price[j] + t[i].bea);
-//                break;
-//            }
-//        }
         int l = 0, r = i;
-        for(int j = 0; j < 100; j++)
+        for(int j = 0; j < 100; j++)//二分找到cost满足条件的最大的
         {
             int mid = (l + r) / 2;
             if(t[mid].cost + t[i].cost <= val)

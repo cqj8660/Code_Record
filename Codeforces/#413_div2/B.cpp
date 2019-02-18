@@ -12,11 +12,11 @@ struct node{
 vector<node> color[5];
 struct clo{
     int p, a, b;
+    bool operator < (clo pa) const
+    {
+        return p < pa.p;
+    }
 }a[maxn];
-int cmp(clo& a, clo& b)
-{
-    return a.p < b.p;
-}
 int main()
 {
     ios::sync_with_stdio(false);
@@ -32,7 +32,7 @@ int main()
     int m; cin >> m;
     for(int i = 0; i < m; i++)
         cin >> g[i];
-    sort(a, a + n, cmp);
+    sort(a, a + n);
     for(int i = 0; i < n; i++)
     {
         for(int j = 1; j <= 3; j++)

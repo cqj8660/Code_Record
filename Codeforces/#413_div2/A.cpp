@@ -2,12 +2,9 @@
 #define ll long long
 #define pii pair<int, int>
 using namespace std;
-int main()
+int n, t, k, d;
+void violence()
 {
-    ios::sync_with_stdio(false);
-    cin.tie(0);
-    int n, t, k, d;
-    cin >> n >> t >> k >> d;
     int t1 = (n / k) * t;
     if(n % k) t1 += t;
     int t2, cnt = 0;
@@ -23,5 +20,20 @@ int main()
         cout << "NO" << endl;
     else
         cout << "YES" << endl;
+}
+void solve()
+{
+    int num = (d / t) * k;
+    if(n - num > k)
+        cout << "YES" << endl;
+    else
+        cout << "NO" << endl;
+}
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    cin >> n >> t >> k >> d;
+    solve();
     return 0;
 }

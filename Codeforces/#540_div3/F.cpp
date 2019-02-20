@@ -43,7 +43,6 @@ int main()
     for(int i = 1; i < n; i++)
     {
         int a, b; cin >> a >> b;
-        
         tree[a].push_back(b);
         tree[b].push_back(a);
     }

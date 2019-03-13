@@ -15,6 +15,8 @@ int v[M][M] =
 int p[M];
 int main()
 {
+    ios::sync_with_stdio(false);
+    cin.tie(0);
     int len1, len2;
     string s1, s2;
     p['A'] = 0;

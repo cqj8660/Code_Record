@@ -4,28 +4,11 @@
 using namespace std;
 const int maxn = 3e5 + 10;
 vector<int> g[maxn], _g[maxn];
-int bas = 13131, col = 1;
+int bas = 1313, col = 1;
 int par[maxn], color[maxn];
 map<ll, int> q;
 vector<int> res[maxn];
 ll h[maxn];
-void init(int n)
-{
-    for(int i = 0; i <= n; i++)
-        par[i] = i;
-}
-int fnd(int t)
-{
-    if(par[t] == t)
-        return t;
-    return par[t] = fnd(par[t]);
-}
-void unite(int a, int b)
-{
-    a = fnd(a);
-    b = fnd(b);
-    par[a] = b;
-}
 ll hsh(int i)//计算哈希值
 {
     sort(g[i].begin(), g[i].end());

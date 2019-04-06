@@ -7,19 +7,29 @@ int main()
 {
     ios::sync_with_stdio(false);
     cin.tie(0);
-    int n, k, sum = 0, cnt = 0;
-    cin >> n >> k;
-    for(int i = 1; i <= n; i++)
+    int a, b;
+    cin >> a >> b;
+    int cnt = 1;
+    for(int i = 1;;i++)
     {
-        int t;
-        cin >> t;
-        sum += t;
-    }
-    while(2 * sum < (2 * k - 1) * n)
-    {
-        sum += k;
-        n++;
-        cnt++;
+        if(i % 2)
+        {
+            a -= cnt++;
+            if(a < 0)
+            {
+                cout << "Vladik" << endl;
+                break;
+            }
+        }
+        else
+        {
+            b -= cnt++;
+            if(b < 0)
+            {
+                cout << "Valera" << endl;
+                break;
+            }
+        }
     }
     return 0;
 }

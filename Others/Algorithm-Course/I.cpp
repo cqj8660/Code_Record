@@ -3,9 +3,9 @@
 #define se second
 #define ll long long
 using namespace std;
-const int maxn = 10000;
+const int maxn = 1e4 + 10;
 pair<int, int> p[maxn];
-float dis(int i, int j)
+inline float dis(int i, int j)
 {
     return sqrt(pow(p[i].fi - p[j].fi, 2) + pow(p[i].se - p[j].se, 2));;
 }
@@ -21,19 +21,12 @@ int main()
         p[i] = make_pair(x, y);
     }
     sort(p, p + n);
-    for(int i = 0; i <= n; i++)
-        for(int j = 0; j <= n; j++)
-            dp[i][j] = INT_MAX;
-    dp[1][0] = dis(1, 0);
-    for(int i = 0; i < n - 1; i++)
-    {
-        for(int j = 0; j < i; j++)
-        {
-            dp[i + 1][j] = min(dp[i + 1][j], dp[i][j] + dis(i, i + 1));
-            dp[i + 1][i] = min(dp[i + 1][i], dp[i][j] + dis(j, i + 1));
-        }
-    }
-    printf("%.5f\n", dp[n - 1][n - 2] + dis(n - 1, n - 2));
+    for(int i = 0; i < n; i++)
+        dp[n - 1][i] = dis(n - 1, i);
+    for(int i = n - 2; i >= 0; i--)
+        for(int j = 0; j <= i; j++)
+            dp[i][j] = min(dp[i + 1][j] + dis(i, i + 1), dp[i + 1][i] + dis(j, i + 1));
+    printf("%.6f\n", dp[0][0]);
     return 0;
 }
 

@@ -7,23 +7,23 @@ inline int lowbit(int i)
 {
     return i & (-i);
 }
-int sum(int i)
+void add(int k, int a)
+{
+    while(k <= n)
+    {
+        bit[k] += a;
+        k += lowbit(k);
+    }
+}
+int sum(int k)
 {
     int res = 0;
-    while(i > 0)
+    while(k > 0)
     {
-        res += bit[i];
-        i -= lowbit(i);
+        res += bit[k];
+        k -= lowbit(k);
     }
     return res;
-}
-void add(int i, int x)
-{
-    while(i <= n)
-    {
-        bit[i] += x;
-        i += lowbit(i);
-    }
 }
 int main()
 {

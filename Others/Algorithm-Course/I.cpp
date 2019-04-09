@@ -1,17 +1,39 @@
 #include <bits/stdc++.h>
+#define fi first
+#define se second
 #define ll long long
 using namespace std;
-const int maxn = 1e4 + 10;
+const int maxn = 10000;
 pair<int, int> p[maxn];
+float dis(int i, int j)
+{
+    return sqrt(pow(p[i].fi - p[j].fi, 2) + pow(p[i].se - p[j].se, 2));;
+}
+float dp[maxn][maxn];
 int main()
 {
-    ios::sync_with_stdio(false);
-    cin.tie(0);
     int n;
-    cin >> n;
+    scanf("%d", &n);
     for(int i = 0; i < n; i++)
-        cin >> p[i].first >> p[i].second;
+    {
+        int x, y;
+        scanf("%d%d", &x, &y);
+        p[i] = make_pair(x, y);
+    }
     sort(p, p + n);
-    
+    for(int i = 0; i <= n; i++)
+        for(int j = 0; j <= n; j++)
+            dp[i][j] = INT_MAX;
+    dp[1][0] = dis(1, 0);
+    for(int i = 0; i < n - 1; i++)
+    {
+        for(int j = 0; j < i; j++)
+        {
+            dp[i + 1][j] = min(dp[i + 1][j], dp[i][j] + dis(i, i + 1));
+            dp[i + 1][i] = min(dp[i + 1][i], dp[i][j] + dis(j, i + 1));
+        }
+    }
+    printf("%.5f\n", dp[n - 1][n - 2] + dis(n - 1, n - 2));
     return 0;
 }
+

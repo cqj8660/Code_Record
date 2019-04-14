@@ -17,15 +17,15 @@ ll n, data[maxn * 2 - 1], datb[maxn * 2 - 1];
     for(int i = 0; i < 2 * n - 1; i++)
         dat[i] = 0;
 }*/
-void update(int a, int b, int k, int l, int r, int v)
+void add(int a, int b, int x, int k, int l, int r)
 {
     if(a <= l && r <= b)
-        data[k] += v;
+        data[k] += x;
     else if(l < b && a < r)
     {
-        datb[k] += (min(b, r) - max(a, l)) * v;
-        update(a, b, k * 2 + 1, l, (l + r) / 2, v);
-        update(a, b, k * 2 + 2, (l + r) / 2, r, v);
+        datb[k] += (min(b, r) - max(a, l)) * x;
+        add(a, b, x, k * 2 + 1, l, (l + r) / 2);
+        add(a, b, x, k * 2 + 2, (l + r) / 2, r);
     }
 }
 ll sum(int a, int b, int k, int l, int r)
@@ -33,10 +33,10 @@ ll sum(int a, int b, int k, int l, int r)
     if(b <= l || r <= a)
         return 0;
     else if(a <= l && r <= b)
-        return datb[k] + (r - l) * data[k];
+        return data[k] * (r - l) + datb[k];
     else
     {
-        ll res = (min(b, r) -  min(a, l)) * data[k];
+        ll res = (min(b, r) -  max(a, l)) * data[k];
         res += sum(a, b, k * 2 + 1, l, (l + r) / 2);
         res += sum(a, b, k * 2 + 2, (l + r) / 2, r);
         return res;
@@ -54,7 +54,7 @@ int main()
         {
             int t;
             cin >> t;
-            update(i, i + 1, 0, 0, n, t);
+            add(i, i + 1, t, 0, 0, n);
         }
         /*
         int temp = 1;
@@ -69,13 +69,12 @@ int main()
             int l, r;
             cin >> q >> l >> r;
             if(q[0] == 'Q')
-            {
                 cout << sum(l - 1, r, 0, 0, n) << endl;
-            }
             else
             {
-                int v; cin >> v;
-                update(l - 1, r, 0, 0, n, v);
+                int v;
+                cin >> v;
+                add(l - 1, r, v, 0, 0, n);
             }
         }
     }

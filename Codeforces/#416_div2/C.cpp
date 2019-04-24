@@ -1,9 +1,9 @@
 #include <bits/stdc++.h>
 #define ll long long
 using namespace std;
-const int mod = 1e9 + 7;
-const int maxn = 1e6 + 10;
+const int maxn = 5e3 + 10;
 int a[maxn];
+int dp[maxn][maxn];
 int main()
 {
     ios::sync_with_stdio(false);
@@ -12,5 +12,6 @@ int main()
     cin >> n;
     for(int i = 0; i <= n; i++)
         cin >> a[i];
+
     return 0;
 }

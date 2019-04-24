@@ -4,14 +4,14 @@ const int maxn = 1e5 + 10;
 int a[maxn], b[maxn];
 int dat[2 * maxn - 1];
 int n;
-void init(int _n)
+/*void init(int _n)
 {
     n = 1;
     while(n < _n)
         n *= 2;
     for(int i = 0; i < 2 * n - 1; i++)
         dat[i] = 0;
-}
+}*/
 void update(int k, int a)
 {
     k += n - 1;

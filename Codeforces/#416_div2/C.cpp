@@ -2,7 +2,7 @@
 #define ll long long
 using namespace std;
 const int mod = 1e9 + 7;
-const int maxn = 1e6 + 10;
+const int maxn = 5e3 + 10;
 int a[maxn];
 int main()
 {
@@ -12,5 +12,6 @@ int main()
     cin >> n;
     for(int i = 0; i <= n; i++)
         cin >> a[i];
+    
     return 0;
 }

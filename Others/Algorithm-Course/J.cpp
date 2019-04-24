@@ -23,8 +23,6 @@ void init()
             break;
     }
 }
-
-
 int main()
 {
     int T; cin >> T;

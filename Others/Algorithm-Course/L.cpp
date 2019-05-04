@@ -16,7 +16,6 @@ bool cmp(const node& pa, const node& pb)
     return pa.end < pb.end;
 }
 bool vis[maxn];
-
 priority_queue<node> pq;
 int main()
 {
@@ -26,13 +25,7 @@ int main()
     {
         int s, t; cin >> s >> t;
         a.push_back(node{s, t});
-//        pq.push(node{s, t});
     }
-//    while(pq.size())
-//    {
-//        cout << pq.top().start << ' ' << pq.top().end << endl;
-//        pq.pop();
-//    }
     sort(a.begin(), a.end(), cmp);
     int res = 1;
     pq.push(a[n - 1]);

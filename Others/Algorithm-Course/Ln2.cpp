@@ -5,7 +5,6 @@
 using namespace std;
 const int maxn = 1e4 + 10;
 vector<pair<int, int> >a;
-bool vis[maxn];
 int main()
 {
     int n;
@@ -17,7 +16,6 @@ int main()
     }
     sort(a.begin(), a.end());
     int res = 0;
-    vis[0] = 1;
     while (a.size()) {
         int len = (int)a.size();
         int now = a[0].first;

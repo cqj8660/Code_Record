@@ -59,15 +59,9 @@ int main()
             continue;
         }
         for(int i = 0; i < n; i++)
-        {
             for(int j = 0; j < n; j++)
-            {
                 for(int k = 0; k < n; k++)
-                {
                     dis[j][k] = min(dis[j][k], dis[j][i] + dis[i][k]);
-                }
-            }
-        }
         for(int i = 0; i < n; i++)
             for(int j = 0; j < n; j++)
             {

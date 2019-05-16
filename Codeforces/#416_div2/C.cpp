@@ -4,8 +4,7 @@ using namespace std;
 const int maxn = 1e4 + 10;
 int a[maxn];
 int beg[maxn], ter[maxn];
-int dp[maxn];//dp[i]表示前i个数字最大的值
-bool vis[maxn];
+int dp[maxn];
 int main()
 {
     ios::sync_with_stdio(false);
@@ -13,22 +12,24 @@ int main()
     int n;
     cin >> n;
     for(int i = 1; i <= n; i++)
-        {
-            cin >> a[i];
-            if(beg[a[i]] == 0)
-                beg[a[i]] = i;
-            ter[a[i]] = i;
-        }
+    {
+        cin >> a[i];
+        if(beg[a[i]] == 0)
+            beg[a[i]] = i;
+        ter[a[i]] = i;
+    }
     for(int i = 1; i <= n; i++){
         dp[i] = dp[i - 1];
-        memset(vis, 0, sizeof(vis));
+        bool vis[maxn] = {};
         int res = 0, st = i;
-        for(int j = i; j >= 0; j--){
-            if(vis[a[j]] == 0){
-                if(ter[a[j]] > i) break;
-                vis[a[j]] = 1;
+        for(int j = i; j >= 0; j--)
+        {
+            if(!vis[a[j]]){
+                if(ter[a[j]] > i)
+                    break;
                 st = min(st, beg[a[j]]);
-                res ^= a[j];
+                res = res xor a[j];
+                vis[a[j]] = 1;
             }
             if(j <= st)
                 dp[i] = max(dp[i], dp[j - 1] + res);

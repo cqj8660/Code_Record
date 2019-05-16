@@ -19,7 +19,6 @@ int main()
         for(int i = l; i <= r; i++)
             if(p[i] < p[x])
                 loc++;
-//        cout << loc << endl;
         if(loc + l == x)
             cout << "Yes" << endl;
         else

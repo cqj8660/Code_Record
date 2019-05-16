@@ -5,6 +5,7 @@ const int maxn = 1e4 + 10;
 int a[maxn];
 int beg[maxn], ter[maxn];
 int dp[maxn];
+bool vis[maxn];
 int main()
 {
     ios::sync_with_stdio(false);
@@ -20,9 +21,9 @@ int main()
     }
     for(int i = 1; i <= n; i++){
         dp[i] = dp[i - 1];
-        bool vis[maxn] = {};
+        memset(vis, 0, sizeof(vis));
         int res = 0, st = i;
-        for(int j = i; j >= 0; j--)
+        for(int j = i; j >= 1; j--)
         {
             if(!vis[a[j]]){
                 if(ter[a[j]] > i)
@@ -31,7 +32,7 @@ int main()
                 res = res xor a[j];
                 vis[a[j]] = 1;
             }
-            if(j <= st)
+            if(j == st)
                 dp[i] = max(dp[i], dp[j - 1] + res);
         }
     }

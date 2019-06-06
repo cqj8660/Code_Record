@@ -27,9 +27,7 @@ int main()
                 continue;
             }
             if(sta.back() == exp++)
-            {
                 sta.pop_back();
-            }
             else
             {
                 cnt++;

@@ -1,41 +1,26 @@
 #include <bits/stdc++.h>
 #define ll long long
 using namespace std;
-const int maxn = 1e8 + 10;
-int v[maxn], ans[maxn];
-int maxd;
-bool better(int d)
+const int maxn = 100 + 10;
+ll v[maxn], ans[maxn];
+ll maxd;
+bool better(ll d)
 {
-    for(int i = d; i >= 0; i--)
-        if(v[i] != ans[i])
-        {
-            return ans[i] == -1 || v[i] < ans[i];
-        }
-    return false;
+    return v[d] < ans[d] || ans[d] == -1;
 }
-int get_first(ll a, ll b)
+ll get_first(ll a, ll b)
 {
-    for(ll i = 2; ; i++)
-    {
-        if(b <= a * i)
-            return i;
-    }
-    ll l = 1, r = 1e16;
-    ll res;
-    for(int i = 0; i < 100; i++)
-    {
-        int mid = (l + r) >> 1;
-        if(b <= a * mid)
-        {
-            res = mid;
-            l = mid;
-        }
-        else
-            r = mid;
-    }
-    return res;
+    ll c = b / a;
+    if (b % a)
+        c++;
+    return c ;
 }
-bool dfs(int d, int from, ll aa, ll bb)
+ll gcd(ll a, ll b){
+    if(b % a == 0)
+        return a;
+    return gcd(b, a % b);
+}
+bool dfs(ll d, ll from, ll aa, ll bb)
 {
     if(d == maxd)
     {
@@ -48,14 +33,14 @@ bool dfs(int d, int from, ll aa, ll bb)
     }
     bool ok = false;
     from = max(from, get_first(aa, bb));
-    for(int i = from; ; i++)
+    for(ll i = from; ; i++)
     {
         if(bb * (maxd + 1 - d) <= i * aa)
             break;
         v[d] = i;
         ll b2 = bb * i;
         ll a2 = aa * i - bb;
-        ll g = __gcd(a2, b2);
+        ll g = gcd(a2, b2);
         if(dfs(d + 1, i + 1, a2 / g, b2 / g))
             ok = true;
     }
@@ -63,21 +48,22 @@ bool dfs(int d, int from, ll aa, ll bb)
 }
 int main()
 {
-    int ok = 0;
-    int a, b;
-    cin >> a >> b;
+    ll a, b;
+    scanf("%lld%lld", &a, &b);
+    ll g = gcd(a, b);
+    a /= g;
+    b /= g;
     for(maxd = 0; ; maxd++)
     {
         memset(ans, -1, sizeof(ans));
         if(dfs(0, get_first(a, b), a, b))
         {
-            ok = 1;
+            for(int i = 0; i <= maxd; i++)
+                printf("%lld ", ans[i]);
+            putchar('\n');
             break;
         }
     }
-    for(int i = 0; i <= maxd; i++)
-        cout << ans[i] << ' ';
-    cout << endl;
     return 0;
 }
 

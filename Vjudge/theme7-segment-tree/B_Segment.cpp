@@ -30,6 +30,28 @@ int query(int a, int b, int l, int r, int k)
         return dat[k];
     return max(query(a, b, l, (l + r) / 2, k * 2 + 1), query(a, b, (l + r) / 2, r, k * 2 + 2));
 }
+void update(int i, int k)
+{
+    i += n - 1;
+    dat[i] = k;
+    while(i > 0)
+    {
+        k = (k - 1) / 2;
+        dat[i] = min(dat[i * 2 + 1], dat[i * 2 + 2]);
+    }
+}
+int query(int a, int b, int l, int r, int k)
+{
+    if(a <= l && r <= b)
+        return dat[k];
+    else if(r <= a || b <= l)
+        return INT_MAX;
+    else{
+        int vl = query(a, b, l, (l + r) / 2, k * 2 + 1);
+        int rl = quert(a, b, (l + r) / 2, r, k * 2 + 2);
+        return min(vl, rl);
+    }
+}
 int main()
 {
     ios::sync_with_stdio(false);
@@ -53,7 +75,7 @@ int main()
             else
                 update(l - 1, r);
         }
-        
+
     }
     return 0;
 }
